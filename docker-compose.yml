@@ -1,0 +1,27 @@
+version: "3.9"
+services:
+  service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: api
+    restart: always
+    environment:
+      ENV: DEV
+      PORT: 9001
+      SSL: FALSE
+      API_VERSION: 1.0
+      DB_HOST: host.docker.internal
+      DB_PORT: 3306
+      DB_NAME: kredit_plus
+      DB_USER: root
+      DB_PASS:
+      X_API_KEY: 030415fa-499b-49d7-95e6-c85382c46295
+      INTEREST: 10
+      ADMIN_FEE: 10
+#    command: sh -c './scripts/wait-for db:5432 redis:6379 -- make run-watch && go test -v ./pkg/unit_testing'
+    ports:
+      - "9000:9001"
+    extra_hosts:
+      - "db:172.26.0.1"
+
