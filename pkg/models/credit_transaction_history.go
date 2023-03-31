@@ -9,3 +9,7 @@ type CreditTrasactionHistory struct {
 	CreatedAt time.Time
 	UpdateAt  time.Time
 }
+
+type CreditTrasactionHistoryResponse struct {
+	CreditTrasaction CreditTrasaction
+}

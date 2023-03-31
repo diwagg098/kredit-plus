@@ -16,6 +16,7 @@ type UC interface {
 	GetDataListUser(ctx context.Context) ([]models.UserResponse, error, context.Context)
 	GetUserById(id int, ctx context.Context) (context.Context, *models.User, error)
 	CreateTransaction(data models.CreditTrasaction, ctx context.Context) (context.Context, int, string, models.CreditTrasaction, error)
+	// GetTransactionHistory(data models.CreditTrasactionHistory, ctx context.Context) (context.Context, int, string, models.CreditTrasactionHistory, error)
 }
 
 func NewUC(r repository.Repo) UC {
