@@ -2,6 +2,7 @@ package repository
 
 import (
 	"diwa/kredit-plus/pkg/models"
+	"errors"
 )
 
 func (r *repo) CreateCreditTransaction(data models.CreditTrasaction) error {
@@ -31,6 +32,7 @@ func (r *repo) CreateCreditTransaction(data models.CreditTrasaction) error {
 	creditLimit.Limit = creditLimit.Limit - data.TotalCredit
 	if creditLimit.Limit < 0 {
 		tx.Rollback()
+		return errors.New("sufficient limit user")
 	}
 
 	// update limit user from limit used

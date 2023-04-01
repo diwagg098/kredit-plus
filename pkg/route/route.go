@@ -9,6 +9,7 @@ import (
 	"log"
 	"net/http"
 	"net/http/httputil"
+	"os"
 	"reflect"
 	"strings"
 	"time"
@@ -18,8 +19,6 @@ import (
 	"github.com/google/uuid"
 	"github.com/rs/cors"
 )
-
-const SECRET_KEY = "1234567"
 
 type Claims struct {
 	jwt.StandardClaims
@@ -78,12 +77,16 @@ func (c *route) Router() http.Handler {
 	router.Group(func(r chi.Router) {
 		r.Use(Loggers)
 		r.Get("/users/me", c.ctrl.FindByIdLogin)
+		r.Get("/users/{userId}", c.ctrl.FindById)
 	})
 
 	// credit transaction router
 	router.Group(func(r chi.Router) {
 		r.Use(Loggers)
 		r.Post("/credit-transaction", c.ctrl.CreateTransaction)
+		r.Get("/credit-transaction/{creditTransactionId}", c.ctrl.FindByIdCreditTransaction)
+		r.Get("/credit-transaction/findByUser/{userId}", c.ctrl.FindByIdUserId)
+		r.Get("/credit-transaction/all", c.ctrl.CreditTransactionList)
 	})
 
 	return router
@@ -159,7 +162,7 @@ func GetToken(f http.Handler) http.Handler {
 		claim := &Claims{}
 		_, err := jwt.ParseWithClaims(aut, claim, func(authorization *jwt.Token) (interface{}, error) {
 			// verify iss claim
-			return []byte(SECRET_KEY), nil
+			return []byte(os.Getenv("SECRET_KEY")), nil
 		})
 		if err != nil {
 			controllers.Response(w, nil, 401, true, "Unauthorized", nil, nil)

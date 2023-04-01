@@ -33,7 +33,11 @@ type Controllers interface {
 	Register(w http.ResponseWriter, r *http.Request)
 	GetDataUser(w http.ResponseWriter, r *http.Request)
 	FindByIdLogin(w http.ResponseWriter, r *http.Request)
+	FindById(w http.ResponseWriter, r *http.Request)
 	CreateTransaction(w http.ResponseWriter, r *http.Request)
+	CreditTransactionList(w http.ResponseWriter, r *http.Request)
+	FindByIdCreditTransaction(w http.ResponseWriter, r *http.Request)
+	FindByIdUserId(w http.ResponseWriter, r *http.Request)
 }
 
 func NewControllers(us usecase.UC) Controllers {

@@ -31,6 +31,7 @@ type UserResponse struct {
 	Username      string `json:"username"`
 	PhotoKTP      string `json:"photo_ktp"`
 	PhotoIdentity string `json:"photo_identity"`
+	Limit         int    `json:"limit"`
 	CreatedAt     time.Time
 	UpdatedAt     time.Time
 }

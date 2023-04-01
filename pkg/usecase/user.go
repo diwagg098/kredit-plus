@@ -4,7 +4,6 @@ import (
 	"context"
 	"diwa/kredit-plus/pkg/models"
 	"diwa/kredit-plus/pkg/utilities"
-	"log"
 	"os"
 	"strconv"
 
@@ -123,7 +122,6 @@ func (uc *uc) GetDataListUser(ctx context.Context) ([]models.UserResponse, error
 
 func (uc *uc) GetUserById(id int, ctx context.Context) (context.Context, *models.User, error) {
 	var data models.User
-	log.Println("Test")
 
 	where := map[string]interface{}{
 		"id": id,
