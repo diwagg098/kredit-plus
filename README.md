@@ -20,4 +20,4 @@ how to create minio bucket
  - create access key in menu access key
 
 
- ![Employee data](https://user-images.githubusercontent.com/61501287/229270765-eee63b89-109e-4ea9-99f0-63c55cc7ca4b.png "Employee Data title")
+<img width="947" alt="image" src="https://user-images.githubusercontent.com/61501287/229271238-3d526f9d-23cd-4668-b100-4ed2f33fa688.png">
