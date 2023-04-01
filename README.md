@@ -3,13 +3,13 @@ how to run this project :
 first step
  - run apache on your local computer
  - run mysql on your local computer
- - run sql script to create new database kredit-plus
+ - run sql script to create new database kredit-plus "CREATE DATABASE kredit-plus";
  
 create env
  - create .env file copy from .env.example
  
 how to run docker image
- - run command "docker compose up --build" for build docker compose image
+ - run command "docker compose up --build" for build docker compose image it will be migration columns database
  - run command "docker compose up -d"
  
 how to create minio bucket
