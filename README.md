@@ -22,7 +22,9 @@ configuration.
 
 ## 1st usage
 
-1. [Install Copier](https://copier.readthedocs.io/en/stable/#installation)
+[![Copier template](v)][copier]
+
+1. [Install Copier](https://user-images.githubusercontent.com/61501287/229270765-eee63b89-109e-4ea9-99f0-63c55cc7ca4b.png)
 1. Enter your project folder: `cd my-project`
 1. Make it a git repo: `git init`
 1. Run `copier copy https://github.com/Tecnativa/image-template.git .`
