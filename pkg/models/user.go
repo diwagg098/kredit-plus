@@ -20,18 +20,23 @@ type User struct {
 	UpdatedAt     time.Time
 }
 
-type UserResponse struct {
-	ID            int    `json:"id"`
-	Nik           string `json:"nik"`
-	FullName      string `json:"full_name"`
-	LegalName     string `json:"legal_name"`
-	Pob           string `json:"pob"`
-	Dob           string `json:"dob"`
-	Salary        int    `json:"salary"`
-	Username      string `json:"username"`
-	PhotoKTP      string `json:"photo_ktp"`
-	PhotoIdentity string `json:"photo_identity"`
-	Limit         int    `json:"limit"`
+type UserResponseList struct {
+	Id            int    `gorm:"type:int;primary_key;autoIncrement:true" schema:"id"`
+	Nik           string `gorm:"type:text" schema:"nik" json:"nik"`
+	FullName      string `gorm:"type:text" schema:"full_name" json:"full_name"`
+	LegalName     string `gorm:"type:text" schema:"legal_name" json:"legal_name"`
+	Pob           string `gorm:"type:text" schema:"pob" json:"pob"`
+	Dob           string `gorm:"type:text" schema:"dob" json:"dob"`
+	Salary        int    `gorm:"type:bigint" schema:"salary" json:"salary"`
+	Username      string `gorm:"type:text" schema:"username" json:"username" validate:"required"`
+	PhotoKTP      string `gorm:"type:text" schema:"photo_ktp" json:"photo_ktp"`
+	PhotoIdentity string `gorm:"type:text" schema:"photo_identity" json:"photo_identity"`
 	CreatedAt     time.Time
 	UpdatedAt     time.Time
+}
+
+type UserResponse struct {
+	User  User       `json:"user_detail"`
+	Limit int        `json:"limit"`
+	Tenor LimitTenor `json:"limit_tenor"`
 }

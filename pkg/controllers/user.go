@@ -57,7 +57,7 @@ func (c *ctrl) FindById(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	if data.Id == 0 {
+	if data.User.Id == 0 {
 		Response(w, ctx, 404, false, NOTFOUND, nil, nil)
 		return
 	}

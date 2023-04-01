@@ -13,8 +13,8 @@ type uc struct {
 type UC interface {
 	Login(data models.User, ctx context.Context) (context.Context, int, string, models.User, error)
 	Register(data models.User, ctx context.Context) (context.Context, int, string, models.User, error)
-	GetDataListUser(ctx context.Context) ([]models.UserResponse, error, context.Context)
-	GetUserById(id int, ctx context.Context) (context.Context, *models.User, error)
+	GetDataListUser(ctx context.Context) ([]models.UserResponseList, error, context.Context)
+	GetUserById(id int, ctx context.Context) (context.Context, *models.UserResponse, error)
 
 	// Credit Transaction UC
 	CreateTransaction(data models.CreditTrasaction, ctx context.Context) (context.Context, int, string, models.CreditTrasaction, error)

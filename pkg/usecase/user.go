@@ -4,6 +4,7 @@ import (
 	"context"
 	"diwa/kredit-plus/pkg/models"
 	"diwa/kredit-plus/pkg/utilities"
+	"log"
 	"os"
 	"strconv"
 
@@ -106,9 +107,9 @@ func (uc *uc) Register(data models.User, ctx context.Context) (context.Context, 
 	return ctx, 200, "Success Add Account", data, nil
 }
 
-func (uc *uc) GetDataListUser(ctx context.Context) ([]models.UserResponse, error, context.Context) {
+func (uc *uc) GetDataListUser(ctx context.Context) ([]models.UserResponseList, error, context.Context) {
 	// dataCTX := utilities.GetDataCTX(ctx)
-	var data []models.UserResponse
+	var data []models.UserResponseList
 
 	query := "SELECT * FROM users"
 	_, err := uc.query.DinamicFindQueryRaw(&data, query)
@@ -120,19 +121,45 @@ func (uc *uc) GetDataListUser(ctx context.Context) ([]models.UserResponse, error
 	return data, nil, ctx
 }
 
-func (uc *uc) GetUserById(id int, ctx context.Context) (context.Context, *models.User, error) {
+func (uc *uc) GetUserById(id int, ctx context.Context) (context.Context, *models.UserResponse, error) {
 	var data models.User
+	var res models.UserResponse
+	var limit models.LimitCredit
+	var tenor models.LimitTenor
 
 	where := map[string]interface{}{
 		"id": id,
 	}
 
-	err, count := uc.query.FindOne(&data, where)
-	if err != nil || count == 0 {
+	whereUserId := map[string]interface{}{
+		"user_id": id,
+	}
+
+	err, _ := uc.query.FindOne(&data, where)
+	if err != nil {
 		ctx = utilities.Logf(ctx, "Error query find user by id : %v", err)
 		return ctx, nil, err
 	}
+
+	err, _ = uc.query.FindOne(&limit, whereUserId)
+	if err != nil {
+		ctx = utilities.Logf(ctx, "Error query find user by id : %v", err)
+		return ctx, nil, err
+	}
+
+	err, _ = uc.query.FindOne(&tenor, whereUserId)
+	if err != nil {
+		ctx = utilities.Logf(ctx, "Error query find user by id : %v", err)
+		return ctx, nil, err
+	}
+
 	data.Password = ""
 
-	return ctx, &data, nil
+	res.User = data
+	res.Limit = limit.Limit
+	res.Tenor = tenor
+
+	log.Println(res)
+
+	return ctx, &res, nil
 }
