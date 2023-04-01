@@ -15,18 +15,6 @@ services:
       volumes:
           - "minio_data:/data"
 
-  createbuckets:
-    image: minio/mc
-    depends_on:
-      - minio
-    entrypoint: >
-      /bin/sh -c "
-      /usr/bin/mc config host add myminio http://minio:9000 AKIAIOSFODNN7EXAMPLE wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY;
-      /usr/bin/mc rm -r --force myminio/asset;
-      /usr/bin/mc mb myminio/asset;
-      /usr/bin/mc policy download myminio/asset;
-      exit 0;
-      "
   service:
     build:
       context: .
@@ -35,8 +23,8 @@ services:
     restart: always
     environment:
       ENV: DEV
-      PORT: 9001
-      SSL: FALSE
+      PORT: 8000
+      SSL: "FALSE"
       API_VERSION: 1.0
       DB_HOST: host.docker.internal
       DB_PORT: 3306
