@@ -25,6 +25,7 @@ look like this image
 
 how to create bucket image :
  - create bucket with name asset
-<img width="960" alt="image" src="https://user-images.githubusercontent.com/61501287/229271362-4244a768-9ebb-451e-83d7-7740bce00d07.png">
+<img width="958" alt="image" src="https://user-images.githubusercontent.com/61501287/229271416-82982f74-8418-4d38-975e-968965f13793.png">
+<img width="960" alt="image" src="https://user-images.githubusercontent.com/61501287/229271431-1d037a0f-ff2b-43dc-b873-4e1673aaf2b0.png">
 
  
