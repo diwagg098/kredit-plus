@@ -48,7 +48,7 @@ func TestGetAcademyDetail(t *testing.T) {
 	}
 
 	for _, cases := range s {
-		req, _ := http.NewRequest(http.MethodGet, "http://localhost:8000/1", bytes.NewBuffer([]byte(cases.content)))
+		req, _ := http.NewRequest(http.MethodGet, "http://localhost:8000/credit-transaction/1", bytes.NewBuffer([]byte(cases.content)))
 		req.Header.Set("Authorization", cases.auth)
 		req.Header.Set("Content-Type", "application/json")
 
